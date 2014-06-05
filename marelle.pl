@@ -305,6 +305,8 @@ linux_name(Name) :-
     sh_output('lsb_release -i | sed \'s/[A-Za-z ]*:\t//\'', CapitalName),
     dif(CapitalName,'n/a'),
     downcase_atom(CapitalName, Name), !.
+linux_name(nixos) :-
+    isfile('/etc/NIXOS'),
 linux_name(unknown).
 
 
