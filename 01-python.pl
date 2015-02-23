@@ -90,6 +90,7 @@ install_pip(Pkg) :-
 pkg(python).
 installs_with_brew(python).
 installs_with_apt(python, 'python-dev').
+installs_with_xbps(python, 'python-devel').
 
 command_pkg(pip).
 meet(pip, linux(_)) :-

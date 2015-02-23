@@ -293,6 +293,10 @@ join(L, R) :- atomic_list_concat(L, R).
 %   be no codename found, determine the short distro name (e.g. arch).
 %   Otherwise codename is unknown.
 linux_name(Name) :-
+    isfile('/etc/issue'),
+    sh_output('cat /etc/issue | head -n 1 | sed -e \'s/ .*//g\'', CapitalName),
+    downcase_atom(CapitalName, Name).
+linux_name(Name) :-
     which('lsb_release', _),
     sh_output('lsb_release -c | sed \'s/^[^:]*:\\s//g\'', Name),
     dif(Name,'n/a'), !.
@@ -392,4 +396,5 @@ meet(selfupdate, _) :-
 :- include('07-managed').
 :- include('08-pacman').
 :- include('09-freebsd').
+:- include('10-xbps').
 :- include('sudo').
