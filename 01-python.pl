@@ -94,9 +94,9 @@ installs_with_apt(python, 'python-dev').
 command_pkg(pip).
 meet(pip, linux(_)) :-
     install_apt('python-pip').
-depends(pip, linux(_), ['build-essential']).
+depends(pip, linux(_), ['build-essential']) :- isfile('/usr/bin/apt-get').
 
-pkg('build-essential').
+pkg('build-essential') :- isfile('/usr/bin/apt-get').
 installs_with_apt('build-essential').
 
 depends(pip, _, [python]).

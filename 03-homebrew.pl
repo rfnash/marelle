@@ -6,7 +6,7 @@
 %  http://mxcl.github.io/homebrew/
 %
 
-command_pkg(brew).
+command_pkg(brew) :- platform(osx).
 
 meet(brew, osx) :-
     sh('ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"').
@@ -30,7 +30,7 @@ depends(P, osx, [brew, 'brew-update']) :- installs_with_brew(P, _).
 
 :- dynamic brew_updated/0.
 
-pkg('brew-update').
+pkg('brew-update') :- platform(osx).
 met('brew-update', osx) :- brew_updated.
 meet('brew-update', osx) :-
     sh('brew update'),
@@ -53,7 +53,7 @@ install_brew(Name, Options) :-
 :- multifile brew_tap/2.
 
 % taps are targets
-pkg(P) :- brew_tap(P, _).
+pkg(P) :- brew_tap(P, _), platform(osx).
 
 met(P, osx) :-
     brew_tap(P, TapName), !,
@@ -66,11 +66,11 @@ meet(P, osx) :-
 
 
 brew_tap('brew-cask-tap', 'caskroom/homebrew-cask').
-pkg('brew-cask').
+pkg('brew-cask') :- platform(osx).
 depends('brew-cask', osx, ['brew-cask-tap']).
 installs_with_brew('brew-cask').
 
-pkg('brew-cask-configured').
+pkg('brew-cask-configured') :- platform(osx).
 depends('brew-cask-configured', osx, ['brew-cask']).
 met('brew-cask-configured', osx) :- isdir('/opt/homebrew-cask/Caskroom').
 meet('brew-cask-configured', osx) :- sh('brew cask').

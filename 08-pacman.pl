@@ -16,7 +16,7 @@ installs_with_pacman(P, P) :- installs_with_pacman(P).
 
 :- dynamic pacman_updated/0.
 
-pkg('pacman-update').
+pkg('pacman-update') :- isfile('/usr/bin/pacman').
 met('pacman-update', linux(arch)) :- pacman_updated.
 meet('pacman-update', linux(arch)) :-
     sh('sudo pacman -Syu'),

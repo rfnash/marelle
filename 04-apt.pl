@@ -27,7 +27,7 @@ depends(P, linux(_), ['apt-get-update']) :-
 
 :- dynamic apt_updated/0.
 
-pkg('apt-get-update').
+pkg('apt-get-update') :- isfile('/usr/bin/apt-get').
 met('apt-get-update', linux(_)) :-
     isfile('/usr/bin/apt-get'),
     apt_updated.
