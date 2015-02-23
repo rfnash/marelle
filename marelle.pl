@@ -254,7 +254,7 @@ usage :-
 %   See if a command is available in the current PATH, and return the path to
 %   that command.
 which(Command, Path) :-
-    sh_output(['which ', Command], Path).
+    sh_output(['which ', Command, ' 2>/dev/null'], Path).
 
 % which(+Command) is semidet.
 %   See if a command is available in the current PATH.
