@@ -397,4 +397,5 @@ meet(selfupdate, _) :-
 :- include('08-pacman').
 :- include('09-freebsd').
 :- include('10-xbps').
+:- include('11-aur').
 :- include('sudo').

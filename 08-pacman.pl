@@ -32,7 +32,7 @@ install_pacman(Pkg) :-
 
 % succeed only if the package is already installed
 check_pacman(Pkg) :-
-    sh(['pacman -Qi ', Pkg, '>/dev/null 2>/dev/null']).
+    sh(['pacman -Qni ', Pkg, '>/dev/null 2>/dev/null']).
 
 met(P, linux(arch)) :-
     installs_with_pacman(P, PkgName), !,
